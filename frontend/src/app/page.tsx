@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Navbar from '@/components/Navbar';
+import MenuSection from "../components/MenuSection"; 
 
 const CoffeeShopPage = () => {
   return (
@@ -12,7 +13,7 @@ const CoffeeShopPage = () => {
       <Navbar />
 
       {/* Hero Section - Added pt-16 to account for fixed navbar */}
-      <div className="relative h-[60vh] bg-black pt-16">
+      <div className="relative h-[60vh] bg-black pt-16 bg-cover bg-center" style={{ backgroundImage: "url('/images/hero-with-overlay-1.png')" }}>
         <div className="absolute inset-0 bg-black/60" />
         <div className="relative h-full flex items-center justify-center text-center px-4">
           <div>
@@ -23,12 +24,10 @@ const CoffeeShopPage = () => {
               Brewing happiness, one sip at a time
 
             </p>
-            <Button size="lg" className="text-gray-600 bg-[#ffd159] hover:bg-[#ffbd59]">
-              View Menu
-            </Button>
           </div>
         </div>
       </div>
+      <MenuSection />
 
       {/* About Us Section */}
       <div className="py-16 px-4 max-w-6xl mx-auto" id="about">
