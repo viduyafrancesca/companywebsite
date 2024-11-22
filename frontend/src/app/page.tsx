@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Coffee, MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 
 const CoffeeShopPage = () => {
@@ -48,14 +48,14 @@ const CoffeeShopPage = () => {
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-xl font-semibold text-amber-600">Our Mission</h3>
             <p className="text-gray-700 mt-2">
-              Our mission is to share our love for coffee with the world by crafting exceptional brews and serving quality food that everyone can enjoy. We are dedicated to delivering great taste at an affordable price—because everyone deserves to savor life’s best moments.
+              Our mission is to share our love for coffee with the world by crafting exceptional brews and serving quality food that everyone can enjoy. We are dedicated to delivering great taste at an affordable price—because everyone deserves to savor life&apos;s best moments.
             </p>
           </div>
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-xl font-semibold text-amber-600">Partnerships and Events</h3>
             <p className="text-gray-700 mt-2">
-              Whether you're planning a cozy gathering, hosting a small event, or exploring a collaboration, we are here to make it happen!<br />
-              <br /><strong>Event Reservations:</strong> We are excited to bring Beantalks experience to your special events with our mobile cart! Whether it's a wedding, corporate event, birthdays, or any other special events, our coffee cart is a great addition to your occassion!<br />
+              Whether you&apos;re planning a cozy gathering, hosting a small event, or exploring a collaboration, we are here to make it happen!<br />
+              <br /><strong>Event Reservations:</strong> We are excited to bring Beantalks experience to your special events with our mobile cart! Whether it&apos;s a wedding, corporate event, birthdays, or any other special events, our coffee cart is a great addition to your occassion!<br />
               <br /><strong>Brand Partnerships:</strong> We are always open to collaborating with local businesses, artists, and organizations. We are open to working together in creating something special for our community.
             </p>
           </div>

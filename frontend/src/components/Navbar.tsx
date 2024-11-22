@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Coffee } from 'lucide-react';
 import Image from 'next/image';
 
 const Navbar = () => {
