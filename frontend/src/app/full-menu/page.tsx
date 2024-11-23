@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
-import { PrismaClient, MenuItem } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 // Initialize Prisma Client
 const prisma = new PrismaClient();
