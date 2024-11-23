@@ -1,22 +1,27 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import Navbar from '@/components/Navbar';
+import Navbar from "@/components/Navbar";
+import { PrismaClient, MenuItem } from "@prisma/client";
 
-const drinksMenu = [
-  { name: "Spanish Latte", description: "Extra rich drink made with two types of milk and a strong espresso shot.", price: "₱120" },
-  { name: "Biscoff Latte", description: "Sweet and spiced flavor of Biscoff Latte made with Lotus Biscoff cookies and a smooth espresso base topped with lotus biscoff biscuit.", price: "₱160" },
-  { name: "Creamy Strawberry", description: "Sweet and refreshing milk with strawberry bits.", price: "₱110" },
-];
+// Initialize Prisma Client
+const prisma = new PrismaClient();
 
-const foodMenu = [
-  { name: "Fudgy Brownies", description: "Melt-in-your-mouth fudgy brownies, packed with chocolatey goodness in every bite.", price: "₱230" },
-  { name: "Baked Biscoff Cheesecake", description: "Creamy cheesecake with the perfect balance of sweet Biscoff flavor, topped with a Lotus Biscoff biscuit.", price: "₱150" },
-  { name: "Classic Chocolate Cookie", description: "Perfect blend of buttery dough and rich chocolate chips, baked to perfection.", price: "₱40" },
-];
+const FullMenu = async () => {
+  // Fetch data from the database for each category
+  const coffeeMenu = await prisma.menuItem.findMany({
+    where: { category: "Coffee" },
+  });
 
-const FullMenu = () => {
+  const nonCoffeeMenu = await prisma.menuItem.findMany({
+    where: { category: "NonCoffee" },
+  });
+
+  const addOnsMenu = await prisma.menuItem.findMany({
+    where: { category: "AddOns" },
+  });
+
   return (
-    <div className="min-h-screen bg-[#fafafa] pt-32"> {/* Add pt-16 for top padding */}
+    <div className="min-h-screen bg-[#fafafa] pt-32">
       <Navbar />
       <div className="container mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-[#171717] text-center mb-8">Our Menu</h2>
@@ -25,33 +30,49 @@ const FullMenu = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* Drinks Card */}
+          {/* Coffee Menu */}
           <Card className="bg-[#f9f9f9] border-2 border-[#ffbd59] text-gray-900">
             <CardHeader>
-              <CardTitle className="text-3xl">Drinks</CardTitle>
+              <CardTitle className="text-3xl">Coffee</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {drinksMenu.map((item, index) => (
-                <div key={index}>
+              {coffeeMenu.map((item) => (
+                <div key={item.id}>
                   <h4 className="text-lg font-semibold">{item.name}</h4>
                   <p className="text-sm text-gray-600">{item.description}</p>
-                  <p className="text-sm font-bold">{item.price}</p>
+                  <p className="text-sm font-bold">{`₱${item.price.toFixed(2)}`}</p>
                 </div>
               ))}
             </CardContent>
           </Card>
 
-          {/* Food Card */}
+          {/* Non-Coffee Menu */}
           <Card className="bg-[#f9f9f9] border-2 border-[#ffbd59] text-gray-900">
             <CardHeader>
-              <CardTitle className="text-3xl">Food</CardTitle>
+              <CardTitle className="text-3xl">Non-Coffee</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              {foodMenu.map((item, index) => (
-                <div key={index}>
+              {nonCoffeeMenu.map((item) => (
+                <div key={item.id}>
                   <h4 className="text-lg font-semibold">{item.name}</h4>
                   <p className="text-sm text-gray-600">{item.description}</p>
-                  <p className="text-sm font-bold">{item.price}</p>
+                  <p className="text-sm font-bold">{`₱${item.price.toFixed(2)}`}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Add-Ons Menu */}
+          <Card className="bg-[#f9f9f9] border-2 border-[#ffbd59] text-gray-900">
+            <CardHeader>
+              <CardTitle className="text-3xl">Add-Ons</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {addOnsMenu.map((item) => (
+                <div key={item.id}>
+                  <h4 className="text-lg font-semibold">{item.name}</h4>
+                  <p className="text-sm text-gray-600">{item.description}</p>
+                  <p className="text-sm font-bold">{`₱${item.price.toFixed(2)}`}</p>
                 </div>
               ))}
             </CardContent>
