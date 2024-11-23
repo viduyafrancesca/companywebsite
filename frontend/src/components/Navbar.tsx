@@ -1,69 +1,61 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true); // Add transparent effect when scrolled more than 50px
-      } else {
-        setIsScrolled(false); // Reset the transparency when scrolled back to top
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
-    <nav
-      className={`fixed top-0 w-full transition-all duration-300 z-50 ${isScrolled ? 'bg-[#ffbd59] bg-opacity-50' : 'bg-[#ffbd59]'}`}
-    >
+    <nav className="fixed top-0 w-full bg-[#ffac3a] backdrop-blur-md z-50">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          {/* Left Side - Home, Menu */}
-          <div className="flex space-x-8 text-lg font-semibold text-gray-900">
-            <a href="#" className="hover:text-amber-600">Home</a>
-            <a href="#menu" className="hover:text-amber-600">Menu</a>
-          </div>
-
-          {/* Centered Logo */}
-          <div className="flex justify-center items-center w-full relative">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo and Brand */}
+          <div className="flex items-center space-x-2">
             <Image
               src="/images/beantalks-logo-transparent.png"
               alt="Beantalks Coffee Logo"
-              width={100}
-              height={100}
-              className="absolute left-1/2 transform -translate-x-1/2 translate-y-1/4"
+              width={48}
+              height={48}
+              className="object-contain"
             />
+            <span className="text-xl font-bold text-gray-900">Beantalks Coffee</span>
           </div>
 
-          {/* Right Side - About, Contact */}
-          <div className="flex space-x-8 text-lg font-semibold text-gray-900">
-            <a href="#about" className="hover:text-amber-600">About</a>
-            <a href="#contact" className="hover:text-amber-600">Contact</a>
+          {/* Navigation Links - Desktop */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-gray-600 hover:text-amber-600">
+              Home
+            </Link>
+            <Link href="/#menu" className="text-gray-600 hover:text-amber-600">
+              Menu
+            </Link>
+            <Link href="/#about" className="text-gray-600 hover:text-amber-600">
+              About
+            </Link>
+            <Link href="/#contact" className="text-gray-600 hover:text-amber-600">
+              Contact
+            </Link>
+            <Link href="full-menu">
+              <button className="px-6 py-3 rounded-lg bg-[#ffd159] text-gray-700 font-semibold hover:bg-[#ffbd59]">
+                View Full Menu
+              </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden absolute right-4">
+          <div className="md:hidden">
             <Button
               variant="ghost"
               size="sm"
+              className="text-gray-600"
               onClick={toggleMobileMenu}
-              className="text-gray-900 focus:outline-none"
             >
               <svg
                 className="h-6 w-6"
@@ -81,17 +73,41 @@ const Navbar = () => {
             </Button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-[#ffac3a] py-4 space-y-4 text-center">
-            <a href="#" className="block text-gray-900 hover:text-amber-600 text-lg font-semibold">Home</a>
-            <a href="#menu" className="block text-gray-900 hover:text-amber-600 text-lg font-semibold">Menu</a>
-            <a href="#about" className="block text-gray-900 hover:text-amber-600 text-lg font-semibold">About</a>
-            <a href="#contact" className="block text-gray-900 hover:text-amber-600 text-lg font-semibold">Contact</a>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-[#ffac3a] py-4 space-y-4 text-center">
+          <Link
+            href="/"
+            className="block text-gray-900 hover:text-amber-600 text-lg font-semibold"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Home
+          </Link>
+          <Link
+            href="/#menu"
+            className="block text-gray-900 hover:text-amber-600 text-lg font-semibold"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Menu
+          </Link>
+          <Link
+            href="/#about"
+            className="block text-gray-900 hover:text-amber-600 text-lg font-semibold"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            About
+          </Link>
+          <Link
+            href="/#contact"
+            className="block text-gray-900 hover:text-amber-600 text-lg font-semibold"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Contact
+          </Link>
+        </div>
+      )}
     </nav>
   );
 };
