@@ -1,13 +1,11 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 
-// Initialize Prisma Client
-const prisma = new PrismaClient();
+export const dynamic = "force-dynamic"; // Ensure runtime rendering
 
 const FullMenu = async () => {
-  // Fetch data from the database for each category
   const coffeeMenu = await prisma.menuItem.findMany({
     where: { category: "Coffee" },
   });
@@ -24,9 +22,12 @@ const FullMenu = async () => {
     <div className="min-h-screen bg-[#fafafa] pt-32">
       <Navbar />
       <div className="container mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold text-[#171717] text-center mb-8">Our Menu</h2>
+        <h2 className="text-4xl md:text-5xl font-bold text-[#171717] text-center mb-8">
+          Our Menu
+        </h2>
         <p className="text-xl text-gray-600 text-center mb-12">
-          A menu crafted with passion—meet our food and drinks that captured our baristas&apos; hearts!
+          A menu crafted with passion—meet our food and drinks that captured our
+          baristas&apos; hearts!
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
