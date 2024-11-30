@@ -15,7 +15,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Beantalks Coffee PH",
-  description: "Beantalks Coffee PH",
+  description: "We offer premium coffee, pastries, and mobile coffee cart services at an affordable price! Visit us in Marikina City!",
 };
 
 export default function RootLayout({

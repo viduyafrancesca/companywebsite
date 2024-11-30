@@ -12,7 +12,6 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
-
 }
 
 model MenuItem {
@@ -22,4 +21,23 @@ model MenuItem {
   description String?
   price       Float
   imageUrl    String?
+
+  // Relation to many-to-many relationship with Package (for coffee items)
+  coffeePackages Package[] @relation("CoffeePackages")
+
+  // Relation to many-to-many relationship with Package (for non-coffee items)
+  nonCoffeePackages Package[] @relation("NonCoffeePackages")
+}
+
+model Package {
+  id         Int      @id @default(autoincrement())
+  name       String
+  price      Float
+  inclusions String[]
+
+  // Relation to many-to-many relationship with MenuItem (for coffee items)
+  coffee MenuItem[] @relation("CoffeePackages")
+
+  // Relation to many-to-many relationship with MenuItem (for non-coffee items)
+  nonCoffee MenuItem[] @relation("NonCoffeePackages")
 }

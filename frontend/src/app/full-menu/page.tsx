@@ -1,7 +1,9 @@
-import React from "react";
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import Navbar from "@/components/Navbar";
-import { prisma } from "@/lib/prisma";
+import React from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import { prisma } from '@/lib/prisma';
+import Contact from '@/components/Contact';
 
 export const dynamic = "force-dynamic"; // Ensure runtime rendering
 
@@ -18,10 +20,18 @@ const FullMenu = async () => {
     where: { category: "AddOns" },
   });
 
+  const packages = await prisma.package.findMany({
+    include: {
+      coffee: true, // Include related coffee menu items
+      nonCoffee: true, // Include related non-coffee menu items
+    },
+  });
+
   return (
-    <div className="min-h-screen bg-[#fafafa] pt-32">
+    <div className="min-h-screen bg-white pt-16">
       <Navbar />
-      <div className="container mx-auto">
+      <div className="bg-white px-8 py-16 mx-auto">
+        {/* Menu */}
         <h2 className="text-4xl md:text-5xl font-bold text-[#171717] text-center mb-8">
           Our Menu
         </h2>
@@ -30,7 +40,7 @@ const FullMenu = async () => {
           baristas&apos; hearts!
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Coffee Menu */}
           <Card className="bg-[#f9f9f9] border-2 border-[#ffbd59] text-gray-900">
             <CardHeader>
@@ -80,6 +90,47 @@ const FullMenu = async () => {
           </Card>
         </div>
       </div>
+
+      {/* Services */}
+      <div className="bg-paper-texture mx-auto px-8 py-16">
+        <h1 className="text-4xl md:text-5xl font-bold text-[#171717] text-center mb-8">Our Packages</h1>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
+          {packages.map((pkg) => (
+            <Card key={pkg.id} className="bg-[#f9f9f9] border-2 border-[#ffbd59] text-gray-900">
+              <CardHeader>
+                <CardTitle className="text-3xl">{pkg.name}</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-lg font-semibold mb-2  text-gray-700">Price: ₱{pkg.price}</p>
+                <p className="text-sm font-semibold mb-2 text-gray-700">Inclusions:</p>
+                <ul className="list-disc pl-6 mb-4 text-gray-700">
+                  {pkg.inclusions.map((inclusion, index) => (
+                    <li key={index}>{inclusion}</li>
+                  ))}
+                </ul>
+                <p className="text-sm font-semibold mb-2 text-gray-700">Coffee Selections:</p>
+                <ul className="list-disc pl-6 mb-4 text-gray-700">
+                  {pkg.coffee.map((item) => (
+                    <li key={item.id}>{item.name}</li>
+                  ))}
+                </ul>
+                <p className="text-sm font-semibold mb-2 text-gray-700">Non-Coffee Selections:</p>
+                <ul className="list-disc pl-6 text-gray-700">
+                  {pkg.nonCoffee.map((item) => (
+                    <li key={item.id}>{item.name}</li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        <p className="text-xl text-gray-400 text-center mt-8">*Please send us a message for custom package.</p>
+      </div>
+
+      <Contact />
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -33,9 +33,9 @@ const Navbar = () => {
             <Link href="/" className="text-gray-600 hover:text-amber-600">
               Home
             </Link>
-            <Link href="/#menu" className="text-gray-600 hover:text-amber-600">
+            {/* <Link href="/#menu" className="text-gray-600 hover:text-amber-600">
               Menu
-            </Link>
+            </Link> */}
             <Link href="/#about" className="text-gray-600 hover:text-amber-600">
               About
             </Link>
@@ -44,7 +44,7 @@ const Navbar = () => {
             </Link>
             <Link href="full-menu">
               <button className="px-6 py-3 rounded-lg bg-[#ffd159] text-gray-700 font-semibold hover:bg-[#ffbd59]">
-                View Full Menu
+                Menu & Services
               </button>
             </Link>
           </div>

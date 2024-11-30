@@ -36,3 +36,7 @@ button, input, textarea {
 html {
   scroll-behavior: smooth;
 }
+
+#footer-credits {
+  color: lightblue;
+}

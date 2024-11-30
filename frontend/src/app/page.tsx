@@ -1,11 +1,11 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import Navbar from '@/components/Navbar';
-import MenuSection from "../components/MenuSection"; 
+import MenuSection from '@/components/MenuSection'; 
+import Footer from '@/components/Footer';
+import Contact from '@/components/Contact';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
+
 
 const CoffeeShopPage = () => {
   return (
@@ -27,17 +27,19 @@ const CoffeeShopPage = () => {
           </div>
         </div>
       </div>
+      
+      {/* Menu Section */}
       <MenuSection />
 
       {/* About Us Section */}
-      <div className="py-16 px-4 max-w-6xl mx-auto" id="about">
+      <div className="py-16 px-4 mx-auto" id="about">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-800">About Us</h2>
-          <p className="text-gray-600 mt-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#171717] text-center mb-8">About Us</h2>
+          <p className="text-xl text-gray-600 text-center mb-12">
             Discover the story behind Beantalks Coffee and what we do!
           </p>
         </div>
-        <div className="space-y-8">
+        <div className="space-y-8 px-4">
           <div className="bg-white p-6 rounded-lg shadow">
             <h3 className="text-xl font-semibold text-amber-600">Our Story</h3>
             <p className="text-gray-700 mt-2">
@@ -63,75 +65,10 @@ const CoffeeShopPage = () => {
 
 
       {/* Contact Section */}
-      <div className="py-16 px-4 bg-white" id="contact">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">Contact Us</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <Card
-              className="bg-[#f9f9f9] border-2 border-[#ffbd59] text-gray-900 focus:ring-[#ffbd59] focus:border-[#ffbd59]"
-            >
-              <CardHeader>
-                <CardTitle>Connect with us for events and partnerships!</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form className="space-y-4">
-                  <div>
-                    <Input placeholder="Your Name" />
-                  </div>
-                  <div>
-                    <Input type="email" placeholder="Your Email" />
-                  </div>
-                  <div>
-                    <Textarea
-                      placeholder="Your Message"
-                      className="min-h-[120px]"
-                    />
-                  </div>
-                  <Button className="w-full text-gray-600 bg-[#ffd159] hover:bg-[#ffbd59]">
-                    Send Message
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
+      <Contact />
 
-            <Card
-              className="bg-[#f9f9f9] border-2 border-[#ffbd59] text-gray-900 focus:ring-[#ffbd59] focus:border-[#ffbd59]"
-            >
-
-              <CardHeader>
-                <CardTitle>Contact Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <MapPin className="h-5 w-5 text-amber-600" />
-                  <p>27 G. Del Pilar Street, Parang, Marikina City</p>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Phone className="h-5 w-5 text-amber-600" />
-                  <p>(+63) 966 843 4064</p>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Mail className="h-5 w-5 text-amber-600" />
-                  <p>beantalksph@gmail.com</p>
-                </div>                <div className="flex items-center space-x-3">
-                  <Clock className="h-5 w-5 text-amber-600" />
-                  <div>
-                    <p>Mon-Fri: 7am - 8pm</p>
-                    <p>Sat-Sun: 8am - 9pm</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <footer className="bg-[#333333] text-white py-8">
-        <div className="max-w-6xl mx-auto px-4 text-center">
-          <p>© 2024 Beantalks Coffee PH. All rights reserved.</p>
-        </div>
-      </footer>
+      {/* Footer Section */}
+      <Footer />
     </div>
   );
 };
