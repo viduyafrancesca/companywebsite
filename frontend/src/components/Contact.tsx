@@ -30,7 +30,7 @@ const Contact = () => {
                 setIsEmailJsReady(true);
                 // console.log('EmailJS initialized successfully');
             } catch (error) {
-                // console.error('Failed to initialize EmailJS:', error);
+                console.error('Failed to initialize EmailJS:', error);
                 setSubmitStatus('Email service initialization failed');
             }
         } else {
@@ -78,7 +78,7 @@ const Contact = () => {
             );
 
             // Log the result for debugging
-            // console.log('Email sent successfully:', result);
+            console.log('Email sent successfully:', result);
 
             // Success handling
             setSubmitStatus('Thank you for reaching out to us, please allow up to 3 business days for a reply!');
@@ -89,7 +89,7 @@ const Contact = () => {
             setMessage('');
         } catch (error) {
             // Error handling
-            // console.error('Failed to send email:', error);
+            console.error('Failed to send email:', error);
             setSubmitStatus('Failed to send message. Please try again.');
         } finally {
             setIsSubmitting(false);
