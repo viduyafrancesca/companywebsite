@@ -9,18 +9,30 @@ export const dynamic = "force-dynamic"; // Ensure runtime rendering
 
 const FullMenu = async () => {
   const coffeeMenu = await prisma.menuItem.findMany({
+    orderBy: {
+      id: 'asc',
+    },
     where: { category: "Coffee" },
   });
 
   const nonCoffeeMenu = await prisma.menuItem.findMany({
+    orderBy: {
+      id: 'asc',
+    },
     where: { category: "NonCoffee" },
   });
 
   const addOnsMenu = await prisma.menuItem.findMany({
+    orderBy: {
+      id: 'asc',
+    },
     where: { category: "AddOns" },
   });
 
   const packages = await prisma.package.findMany({
+    orderBy: {
+      id: 'asc',
+    },
     include: {
       coffee: true, // Include related coffee menu items
       nonCoffee: true, // Include related non-coffee menu items
